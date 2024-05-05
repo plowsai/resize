@@ -28,6 +28,7 @@ def upload():
 
 @app.route('/resize', methods=['POST'])
 def resize():
+    print("Resize route hit") 
     width = int(request.form.get('width', 0))
     height = int(request.form.get('height', 0))
     if width <= 0 or height <= 0:
