@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, send_file
 from PIL import Image
 import io
 import os
+from flask import jsonify
 
 app = Flask(__name__)
 
@@ -23,16 +24,19 @@ def upload():
         image.save(image_io, 'JPEG')
         image_io.seek(0)
         return send_file(image_io, mimetype='image/jpeg')
+    return jsonify({'error': 'Your error message'}), 400
 
 @app.route('/resize', methods=['POST'])
 def resize():
     width = int(request.form.get('width', 0))
     height = int(request.form.get('height', 0))
     if width <= 0 or height <= 0:
-        return 'Width and height must be greater than 0.'
+        return 'Width and height must be greater than 0.', 400
+    if 'file' not in request.files:
+        return 'No file part', 400
     file = request.files['file']
     if file.filename == '':
-        return 'No selected file'
+        return 'No selected file', 400
     if file:
         image = Image.open(file.stream)
         image = image.resize((width, height), Image.ANTIALIAS)
@@ -40,6 +44,8 @@ def resize():
         image.save(image_io, 'JPEG')
         image_io.seek(0)
         return send_file(image_io, mimetype='image/jpeg')
+    return jsonify({'error': 'Your error message'}), 400
+
 
 if __name__ == '__main__':
     app.run(debug=True)
