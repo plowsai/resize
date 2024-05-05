@@ -5,19 +5,18 @@ FROM python:${PYTHON_VERSION}
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-RUN mkdir -p /main
+RUN mkdir -p /code
 
-WORKDIR /main
+WORKDIR /code
 
 COPY requirements.txt /tmp/requirements.txt
 RUN set -ex && \
     pip install --upgrade pip && \
     pip install -r /tmp/requirements.txt && \
     rm -rf /root/.cache/
-COPY. /main
+COPY . /code
 
-# Expose the port the app runs on
-EXPOSE 5000
+EXPOSE 8000
 
-# Specify the command to run the Flask application
+# TODO: replace demo.wsgi with <project_name>.wsgi
 CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]
