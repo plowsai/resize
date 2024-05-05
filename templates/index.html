@@ -3,18 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <title>Image Resizer</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+       .form-container {
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+       .form-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+       .form-container input[type="number"],.form-container input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+       .form-container button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+       .form-container button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h1>Image Resizer</h1>
-    <form action="/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="file">
-        <button type="submit">Upload</button>
-    </form>
-    <form action="/resize" method="post">
-        Width: <input type="number" name="width"><br>
-        Height: <input type="number" name="height"><br>
-        <input type="file" name="file">
-        <button type="submit">Resize</button>
-    </form>
+    <div class="form-container">
+        <h1>Image Resizer</h1>
+        <form action="/resize" method="post">
+            Width: <input type="number" name="width"><br>
+            Height: <input type="number" name="height"><br>
+            <input type="file" name="file">
+            <button type="submit">Resize</button>
+        </form>
+    </div>
 </body>
 </html>
