@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Resizer</title>
+</head>
+<body>
+    <h1>Image Resizer</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <button type="submit">Upload</button>
+    </form>
+    <form action="/resize" method="post">
+        Width: <input type="number" name="width"><br>
+        Height: <input type="number" name="height"><br>
+        <input type="file" name="file">
+        <button type="submit">Resize</button>
+    </form>
+</body>
+</html>
